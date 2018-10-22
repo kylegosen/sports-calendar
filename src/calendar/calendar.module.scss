@@ -1,0 +1,68 @@
+@import '../styles/variables.scss';
+
+.month {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: white;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2em;
+  text-transform: lowercase;
+}
+
+.weeksWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+.weekDays {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.weekDays > div {
+  width: (100% / 7);
+}
+
+.week {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.day {
+  width: 14%;
+  border-left: 0.01em solid lightgray;
+  border-top: 0.01em solid lightgray;
+}
+
+.week .day:last-of-type {
+  border-right: 0.01em solid lightgray;
+}
+
+.week:last-of-type .day {
+  border-bottom: 0.01em solid lightgray;
+}
+
+.lastDayOfMonth {
+  border-right: 0.01em solid lightgray;
+}
+
+.emptyDay {
+  width: 14%;
+}
+
+.week:last-of-type .emptyDay {
+  border-top: 0.01em solid lightgray;
+}
