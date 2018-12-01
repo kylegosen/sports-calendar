@@ -1,0 +1,10 @@
+.weekDays {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.weekDays > div {
+  width: (100% / 7);
+}

@@ -5,7 +5,8 @@ import { Provider } from "react-redux";
 import createSagaMiddleware from 'redux-saga'
 
 import reducer from './reducers/index';
-import Calendar from './calendar/index';
+import { watcherSaga } from "./sagas";
+import Calendar from './calendar/calendar';
 
 import './styles/app.scss';
 
@@ -14,6 +15,7 @@ const store = createStore(
     reducer,
     applyMiddleware(sagaMiddleware)
 );
+sagaMiddleware.run(watcherSaga);
 
 ReactDOM.render(
     <Provider store={store}>

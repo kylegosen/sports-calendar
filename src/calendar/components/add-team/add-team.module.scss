@@ -1,0 +1,36 @@
+@import '../../../styles/variables.scss';
+
+.addTeamModal {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.addTeamContent {
+  display: flex;
+  flex-grow: 1;
+}
+
+.addTeamButtonGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.primaryButton {
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0.25em;
+  padding: 0.3em 1em;
+  color: white;
+  background-color: $secondary-color;
+}
+
+.secondaryButton {
+  text-transform: uppercase;
+  cursor: pointer;
+  border: thin solid $secondary-color;
+  border-radius: 0.25em;
+  padding: 0.3em 1em;
+  color: $secondary-color;
+}
