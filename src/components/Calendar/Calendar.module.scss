@@ -1,0 +1,72 @@
+@import '../../styles/variables';
+
+.calendarWrapper {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.sideBar {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  color: white;
+  background-color: white;
+  z-index: 100;
+  transition: all 0.3s ease;
+  padding-top: $header-height;
+}
+
+.favoriteTeam {
+  width: 4em;
+  height: 4em;
+}
+
+.addButton {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0.75em;
+  bottom: 0.75em;
+  width: 3em;
+  height: 3em;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 100%;
+  color: white;
+  background: $secondary-color;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  -moz-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  -webkit-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+@media (max-width: 768px) {
+  .sideBar {
+    position: fixed;
+    left: -100px;
+    height: calc(100% - #{$header-height});
+  }
+
+  .sideBar.sideBarOpen {
+    left: 0;
+    -webkit-box-shadow: 10px 0 13px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 0 13px -10px rgba(0,0,0,0.75);
+    box-shadow: 10px 0 13px -10px rgba(0,0,0,0.75);
+  }
+
+  .sideBarOpen {
+
+  }
+
+  .sideBarOverlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 50;
+  }
+}

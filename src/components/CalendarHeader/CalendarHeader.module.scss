@@ -1,0 +1,21 @@
+@import '../../styles/variables';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2em;
+  text-transform: lowercase;
+  position: relative;
+  height: $header-height;
+
+  .headerLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    svg {
+      padding-right: 20px;
+    }
+  }
+}

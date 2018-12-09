@@ -3,7 +3,7 @@ import React from 'react';
 import ReactModal from 'react-modal';
 
 import {addTeamModal, addTeamContent, addTeamButtonGroup,
-    primaryButton, secondaryButton} from './add-team.module.scss';
+    primaryButton, secondaryButton} from './AddTeam.module.scss';
 
 const AddTeam = (props) => {
     return (

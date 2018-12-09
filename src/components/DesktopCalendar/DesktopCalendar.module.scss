@@ -1,0 +1,40 @@
+.month {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: white;
+}
+
+.weeksWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+
+.week {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.week:last-of-type {
+  //border-bottom: 0.01em solid lightgray;
+}
+
+.week .day:last-of-type {
+  //border-right: 0.01em solid lightgray;
+}
+
+@media (max-width: 768px) {
+  .weeksWrapper {
+    overflow-y: scroll;
+    justify-content: initial;
+
+    .week {
+      flex-direction: column;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+  }
+}

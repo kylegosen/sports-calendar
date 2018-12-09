@@ -6,7 +6,7 @@ import createSagaMiddleware from 'redux-saga'
 
 import reducer from './reducers/index';
 import { watcherSaga } from "./sagas";
-import Calendar from './calendar/calendar';
+import Calendar from './components/Calendar/CalendarContainer';
 
 import './styles/app.scss';
 
