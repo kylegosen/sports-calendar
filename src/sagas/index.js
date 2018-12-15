@@ -1,22 +1,24 @@
 import { takeLatest, call, put } from "redux-saga/effects";
-
+import * as types from '../constants';
+import * as actions from '../actions';
+import {API_GET_TEAMS} from "../constants";
 
 export function* watcherSaga(){
-    yield takeLatest("API_CALL_REQUEST", workerSaga);
+    yield takeLatest(types.GET_TEAMS, getTeams);
 }
 
-function fetchTeams(){
-    return fetch("teams");
-}
-
-function* workerSaga(){
+function* getTeams(){
     try {
         const response = yield call(fetchTeams);
         const json = yield response.json();
         const teams = json._embedded.teams;
 
-        yield put({type: "API_CALL_SUCCESS", teams});
+        yield put(actions.getTeamsSuccess(teams));
     } catch(error) {
-        yield put({type: "API_CALL_FAILURE", error});
+        yield put(actions.getTeamFailure(error));
     }
+}
+
+function fetchTeams(){
+    return fetch(API_GET_TEAMS);
 }

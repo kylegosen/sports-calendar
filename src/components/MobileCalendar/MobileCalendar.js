@@ -1,11 +1,12 @@
 import React from 'react';
 
-import Day from '../Day';
 import CalendarHeader from '../CalendarHeader';
 
 import s from './MobileCalendar.module.scss';
 
 const MobileCalendar = ({calendarMonth, onOpenSideBar, selectedMonth}) => {
+    const days = calendarMonth.flat(2).filter(day => day);
+
     return (
         <div className={s.month}>
             <CalendarHeader
@@ -13,17 +14,27 @@ const MobileCalendar = ({calendarMonth, onOpenSideBar, selectedMonth}) => {
                 showMenu={true}
                 onClickMenu={() => onOpenSideBar()}/>
 
-            <div className={s.weeksWrapper}>{
-                calendarMonth.map((weeks, i) => {
-                    return <div key={"week" + i} className={s.week}>{
-                        weeks.map((date, j) => {
-                            return <Day key={"day" + j} day={date} isMobile={true} />
-                        })
-                    }</div>
+            <div className={s.days}>{
+                days.map((date, i) => {
+                    return <Day key={"day" + i} day={date}/>
                 })
             }</div>
         </div>
     );
+};
+
+const Day = ({day}) => {
+    return (
+        <div className={s.day}>
+            <div className={s.dayHeader}>
+                <div>{ day.format("ddd") }</div>
+                <div>{ day.format("MMM D") }</div>
+            </div>
+            <div>
+                <span>No games.</span>
+            </div>
+        </div>
+    )
 };
 
 export default MobileCalendar;

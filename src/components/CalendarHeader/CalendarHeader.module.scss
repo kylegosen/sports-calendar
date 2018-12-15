@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0;
   font-size: 2em;
   text-transform: lowercase;
   position: relative;

@@ -32,7 +32,7 @@ class Calendar extends Component {
     }
 
     componentDidMount(){
-        this.props.onRequestTeams();
+        this.props.onGetTeams();
     }
 
     onAddTeam(){
@@ -80,24 +80,19 @@ class Calendar extends Component {
     }
 }
 
-const SideBar = ({isSideBarOpen, onClose}) => {
-  return (
-      <Fragment>
-          <div className={
-              classNames({
-                  [s.sideBar]: true,
-                  [s.sideBarOpen]: isSideBarOpen
-              })
-          }>
-              <img src={ImageMap["nfl_ari"]} className={s.favoriteTeam} alt=""/>
-          </div>
+const SideBar = ({ isSideBarOpen, onClose }) => (
+  <Fragment>
+      <div className={
+          classNames({
+              [s.sideBar]: true,
+              [s.sideBarOpen]: isSideBarOpen
+          })
+      }>
+          <img src={ImageMap["nfl_ari"]} className={s.favoriteTeam} alt=""/>
+      </div>
 
-        {
-            isSideBarOpen &&
-            <div className={s.sideBarOverlay} onClick={() => onClose() }/>
-        }
-    </Fragment>
-  );
-};
+    { isSideBarOpen && <div className={s.sideBarOverlay} onClick={() => onClose() }/> }
+</Fragment>
+);
 
 export default windowSize(Calendar);

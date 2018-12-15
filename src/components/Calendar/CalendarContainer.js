@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 
+import * as actions from '../../actions';
 import Calendar from './Calendar';
 
 const mapStateToProps = state => {
@@ -13,7 +14,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRequestTeams: () => dispatch({ type: "API_CALL_REQUEST" })
+        onGetTeams: () => dispatch(actions.getTeams())
     };
 };
 
