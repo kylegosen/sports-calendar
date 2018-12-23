@@ -63,17 +63,16 @@ class Calendar extends Component {
         return (
             <div className={s.calendarWrapper}>
                 <SideBar isSideBarOpen={isSideBarOpen} onClose={() => this.onToggleSideBar(false)}/>
-                {
-                    isMobile
-                        ? <MobileCalendar
-                            calendarMonth={this.state.calendarMonth}
-                            selectedMonth={this.state.selectedMonth}
-                            onOpenSideBar={() => this.onToggleSideBar(true)}
-                        />
-                        : <DesktopCalendar
-                            calendarMonth={this.state.calendarMonth}
-                            selectedMonth={this.state.selectedMonth}
-                        />
+                {isMobile
+                    ? <MobileCalendar
+                        calendarMonth={this.state.calendarMonth}
+                        selectedMonth={this.state.selectedMonth}
+                        onOpenSideBar={() => this.onToggleSideBar(true)}
+                    />
+                    : <DesktopCalendar
+                        calendarMonth={this.state.calendarMonth}
+                        selectedMonth={this.state.selectedMonth}
+                    />
                 }
             </div>
         );

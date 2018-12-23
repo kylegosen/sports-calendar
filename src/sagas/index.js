@@ -1,7 +1,7 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 import * as types from '../constants';
 import * as actions from '../actions';
-import {API_GET_TEAMS} from "../constants";
+import { API_GET_TEAMS } from "../constants";
 
 export function* watcherSaga(){
     yield takeLatest(types.GET_TEAMS, getTeams);
@@ -9,16 +9,15 @@ export function* watcherSaga(){
 
 function* getTeams(){
     try {
-        const response = yield call(fetchTeams);
-        const json = yield response.json();
-        const teams = json._embedded.teams;
-
+        const teams = yield call(fetchTeams);
         yield put(actions.getTeamsSuccess(teams));
     } catch(error) {
         yield put(actions.getTeamFailure(error));
     }
 }
 
-function fetchTeams(){
-    return fetch(API_GET_TEAMS);
+function* fetchTeams(){
+    const response = yield fetch(API_GET_TEAMS);
+    const json = yield response.json();
+    return json._embedded.teams;
 }

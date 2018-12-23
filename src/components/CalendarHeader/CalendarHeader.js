@@ -9,11 +9,11 @@ const CalendarHeader = ({selectedMonth, showMenu, onClickMenu}) => {
         <div className={s.header}>
             <div className={s.headerLeft}>
                 {showMenu &&
-                <div onClick={() => onClickMenu && onClickMenu()}>
-                    <Menu size={24}/>
-                </div>
+                    <div onClick={() => onClickMenu && onClickMenu()}>
+                        <Menu size={24}/>
+                    </div>
                 }
-                <div>{selectedMonth.format("MMMM")}</div>
+                <div className={s.month}>{selectedMonth.format("MMMM")}</div>
             </div>
             <div>{selectedMonth.format("YYYY")}</div>
         </div>
