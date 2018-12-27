@@ -1,1 +1,1 @@
-export { default } from './WeekHeader';
+export {default} from './WeekHeader';

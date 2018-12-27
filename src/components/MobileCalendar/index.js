@@ -1,1 +1,1 @@
-export { default } from './MobileCalendar';
+export {default} from './MobileCalendar';

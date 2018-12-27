@@ -1,5 +1,9 @@
 @import '../../styles/variables';
 
+svg:hover {
+  cursor: pointer;
+}
+
 .calendarWrapper {
   display: flex;
   flex-direction: row;
@@ -8,13 +12,15 @@
 
 .sideBar {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 100px;
-  color: white;
   background-color: white;
   z-index: 100;
   transition: all 0.3s ease;
   padding-top: $header-height;
+  color: black;
 }
 
 .favoriteTeam {
@@ -22,24 +28,56 @@
   height: 4em;
 }
 
-.addButton {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 0.75em;
-  bottom: 0.75em;
-  width: 3em;
-  height: 3em;
-  font-weight: bold;
-  font-size: 1em;
-  border-radius: 100%;
-  color: white;
-  background: $secondary-color;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  -moz-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  -webkit-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+.addTeamModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  z-index: 999;
+
+  .addTeamModal {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    border: 1px solid rgb(204, 204, 204);
+    background: rgb(255, 255, 255);
+    border-radius: 4px;
+    outline: none;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    .modalHeader {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .teams {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      overflow: auto;
+
+      .team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 120px;
+      }
+
+      .team:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -51,9 +89,9 @@
 
   .sideBar.sideBarOpen {
     left: 0;
-    -webkit-box-shadow: 10px 0 13px -10px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 0 13px -10px rgba(0,0,0,0.75);
-    box-shadow: 10px 0 13px -10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 0 13px -10px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 0 13px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 0 13px -10px rgba(0, 0, 0, 0.75);
   }
 
   .sideBarOpen {
@@ -66,7 +104,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 50;
   }
 }

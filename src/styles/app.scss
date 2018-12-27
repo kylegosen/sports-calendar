@@ -1,13 +1,13 @@
 @import './variables.scss';
 
-html, body, #root {
+html, body, #app {
   padding: 0;
   margin: 0;
   height: 100vh;
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
-#root {
+#app {
   display: flex;
   flex-direction: column;
 }
