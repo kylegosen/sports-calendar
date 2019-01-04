@@ -1,8 +1,7 @@
 import moment from "moment";
 
-function getCalendarMonth(monthParam = moment().format("MM"), yearParam = moment().format("YYYY")) {
+export function getCalendarMonth(monthParam = moment().format("MM"), yearParam = moment().format("YYYY")) {
   let startDate = `${monthParam}-01-${yearParam}`;
-  let firstWeekOfMonth = moment(startDate).startOf('month').week();
   let firstDay = moment(startDate).startOf('month');
   let endDay = moment(startDate).endOf('month');
 
@@ -11,7 +10,8 @@ function getCalendarMonth(monthParam = moment().format("MM"), yearParam = moment
   let currentWeek = 0;
   let daysHaveBeenPadded = false;
   for (let i = firstDay; i.isBefore(endDay); i.add(1, 'days')) {
-    let weekOfMonth = i.week() - firstWeekOfMonth;
+    let weekOfMonth = getWeekOfMonth(i) - 1;
+
     if (currentWeek !== weekOfMonth) {
       month[currentWeek] = week;
       week = [];
@@ -41,4 +41,11 @@ function getCalendarMonth(monthParam = moment().format("MM"), yearParam = moment
   return month;
 }
 
-export default {getCalendarMonth};
+function getWeekOfMonth (input) {
+  const firstDayOfMonth = input.clone().startOf('month');
+  const firstDayOfWeek = firstDayOfMonth.clone().startOf('week');
+
+  const offset = firstDayOfMonth.diff(firstDayOfWeek, 'days');
+
+  return Math.ceil((input.date() + offset) / 7);
+}

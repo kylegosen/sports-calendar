@@ -2,18 +2,15 @@ import React, {Component, Fragment} from 'react';
 import windowSize from 'react-window-size';
 import moment from 'moment';
 import classNames from 'classnames';
-import {equals} from 'ramda';
 
 import {PlusCircle, X} from 'react-feather';
 
-import ImageMap from '../../images/image-map';
-
 import s from './Calendar.module.scss';
 
-import CalendarUtils from '../../helpers/utils';
+import { getCalendarMonth } from '../../helpers/utils';
 import DesktopCalendar from '../DesktopCalendar';
 import MobileCalendar from '../MobileCalendar';
-
+import Team from '../Team';
 
 class Calendar extends Component {
   constructor(props) {
@@ -30,7 +27,7 @@ class Calendar extends Component {
 
   componentWillMount() {
     this.setState({
-      calendarMonth: CalendarUtils.getCalendarMonth(11)
+      calendarMonth: getCalendarMonth(12)
     });
   }
 
@@ -44,17 +41,23 @@ class Calendar extends Component {
 
     if (teams && favorites.length !== this.state.favorites.length /*!equals(this.state.favorites, favorites)*/) {
       const favoriteTeams = favorites.map(teamId => {
-        return teams.find(({id}) => id + "" === teamId);
+        let foundTeam = teams.find(({id}) => id + "" === teamId);
+
+        foundTeam.games.forEach(game => {
+          game["momentTime"] = moment(game.startTime);
+        });
+
+        return foundTeam;
       });
 
       console.log("MATCHED TEAMS: ", favoriteTeams);
 
-      this.setState({favorites: favoriteTeams});
+      this.setState({ favorites: favoriteTeams });
     }
   }
 
   onToggleSideBar = val => {
-    this.setState({isSideBarOpen: val});
+    this.setState({ isSideBarOpen: val });
   };
 
   onAddTeam = team => {
@@ -62,7 +65,7 @@ class Calendar extends Component {
   };
 
   onCloseModal = () => {
-    this.setState({isAddTeamOpen: false});
+    this.setState({ isAddTeamOpen: false });
   };
 
   render() {
@@ -85,12 +88,14 @@ class Calendar extends Component {
 
         {isMobile
           ? <MobileCalendar
+            teams={teams}
             favorites={favorites}
             calendarMonth={this.state.calendarMonth}
             selectedMonth={this.state.selectedMonth}
             onOpenSideBar={() => this.onToggleSideBar(true)}
           />
           : <DesktopCalendar
+            teams={teams}
             favorites={favorites}
             calendarMonth={this.state.calendarMonth}
             selectedMonth={this.state.selectedMonth}
@@ -119,7 +124,7 @@ const SideBar = ({isSideBarOpen, favorites, onAddTeam, onClose}) => (
     }>
 
       {favorites.map(team => {
-        return <Team key={team.id} team={team} showTeamName={false}/>
+        return <Team key={team.id} team={team} size={60} showTeamName={false}/>
       })}
 
       <PlusCircle size={64} onClick={() => onAddTeam()}/>
@@ -139,18 +144,12 @@ const AddTeamModal = ({teams, onClose, onAddTeam}) => (
       </div>
 
       <div className={s.teams}>
-        {Object.entries(teams).map(([key, team]) => <Team key={team.id} team={team}
-                                                          onClick={(team) => onAddTeam(team)}/>)}
+        {
+          Object.entries(teams).map(([key, team]) =>
+            <Team key={team.id} team={team} size={60} onClick={(team) => onAddTeam(team)}/>)
+          }
       </div>
     </div>
-  </div>
-);
-
-const Team = ({team, onClick, showTeamName = true}) => (
-  <div className={s.team} onClick={() => onClick && onClick(team)}>
-    <img src={ImageMap[team.image]} width={60} height={60}/>
-    {showTeamName && <div>{team.city}</div>}
-    {showTeamName && <div>{team.name}</div>}
   </div>
 );
 

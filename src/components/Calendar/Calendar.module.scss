@@ -64,18 +64,6 @@ svg:hover {
       flex-direction: row;
       flex-wrap: wrap;
       overflow: auto;
-
-      .team {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 120px;
-      }
-
-      .team:hover {
-        cursor: pointer;
-      }
     }
   }
 }

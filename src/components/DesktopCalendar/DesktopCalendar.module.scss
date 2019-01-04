@@ -29,3 +29,8 @@
 .emptyDay {
   width: (100%/7);
 }
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
